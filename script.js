@@ -3,12 +3,28 @@ function getComputerChoice () {
     let randomNumber = Math.floor(Math.random() * 3);
     switch (randomNumber) {
         case 0:
-            return 'Rock';
+            return 'rock';
         case 1:
-            return 'Paper';
+            return 'paper';
         case 2:
-            return 'Scissors';
+            return 'scissors';
     }
 }
 
-console.log(getComputerChoice());
+// function that plays a single round
+function playOneRound (playerSelection, computerSelection) {
+    playerSelection = playerSelection.toLowerCase();
+    if (playerSelection === computerSelection) {
+        return 'tie';
+    }
+    else if (
+        playerSelection === 'rock' && computerSelection === "scissors" ||
+        playerSelection === 'paper' && computerSelection === 'rock' ||
+        playerSelection === 'scissors' && computerSelection === 'paper'
+    ) {
+        return `You Win! ${playerSelection} beats ${computerSelection}`;
+    }
+    else {
+        return `Computer Win! ${computerSelection} beats ${playerSelection}`;
+    }
+}
