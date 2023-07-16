@@ -12,7 +12,7 @@ function getComputerChoice () {
 }
 
 // function that plays a single round
-function playOneRound (playerSelection, computerSelection) {
+function findWinner (playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     if (playerSelection === computerSelection) {
         return 'tie';
@@ -22,9 +22,9 @@ function playOneRound (playerSelection, computerSelection) {
         playerSelection === 'paper' && computerSelection === 'rock' ||
         playerSelection === 'scissors' && computerSelection === 'paper'
     ) {
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
+        return 'player';
     }
     else {
-        return `Computer Win! ${computerSelection} beats ${playerSelection}`;
+        return 'computer';
     }
 }
