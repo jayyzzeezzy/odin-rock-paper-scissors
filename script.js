@@ -11,7 +11,7 @@ function getComputerChoice () {
     }
 }
 
-// function that plays a single round
+// function that finds the winner
 function findWinner (playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     if (playerSelection === computerSelection) {
@@ -28,3 +28,21 @@ function findWinner (playerSelection, computerSelection) {
         return 'computer';
     }
 }
+
+//  function that will play one round
+function playRound (playerSelection, computerSelection) {
+    const result = findWinner(playerSelection, computerSelection);
+    if (result == 'tie') {
+        return "It's a tie!";
+    }
+    else if (result == 'player') {
+        return `You win! ${playerSelection} beats ${computerSelection}`;
+    }
+    else {
+        return `Computer Win! ${computerSelection} beats ${playerSelection}`;
+    }
+}
+
+const playerSelection = "rock";
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
