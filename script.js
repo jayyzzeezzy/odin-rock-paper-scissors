@@ -55,8 +55,15 @@ buttons.forEach((button) => {
     });
 });
 
+// show player score by using DOM methods
 const playerScore = document.querySelector('.player-score');
 const score = document.createElement('div');
 score.classList.add('score');
 score.textContent = '1';
 playerScore.appendChild(score);
+
+// show computer score by using DOM methods
+const computerScore = document.querySelector('.computer-score');
+const compScore = document.createElement('div');
+compScore.textContent = '0';
+computerScore.appendChild(compScore);
