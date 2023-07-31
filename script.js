@@ -54,3 +54,9 @@ buttons.forEach((button) => {
         console.log(playRound(button.id, getComputerChoice()));
     });
 });
+
+const playerScore = document.querySelector('.player-score');
+const score = document.createElement('div');
+score.classList.add('score');
+score.textContent = '1';
+playerScore.appendChild(score);
