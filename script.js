@@ -43,3 +43,14 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
+// create a nodelist call buttons
+const buttons = document.querySelectorAll('button');
+
+// iterate through each button
+buttons.forEach((button) => {
+
+    // for each button we add a 'click' listener
+    button.addEventListener('click', () => {
+        console.log(playRound(button.id, getComputerChoice()));
+    });
+});
