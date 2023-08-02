@@ -1,3 +1,24 @@
+// variables
+let playerSelection;
+let computerSelection;
+let playerScore = 0;
+let computerScore = 0;
+
+const resultText = document.querySelector('.result-message-text');
+const playerScoreboard = document.querySelector('#player-score');
+const computerScoreboard = document.querySelector('#computer-score');
+
+// game
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    //add 'click' listener for each button
+    button.addEventListener('click', () => {
+        playerSelection = button.id;
+        playRound(playerSelection, computerSelection);
+    });
+});
+
 // Write a function to get computer's choice
 function getComputerChoice () {
     let randomNumber = Math.floor(Math.random() * 3);
@@ -11,59 +32,56 @@ function getComputerChoice () {
     }
 }
 
-// function that finds the winner
-function findWinner (playerSelection, computerSelection) {
+// UI
+// display result message
+function displayResult (message) {
+    resultText.textContent = message;
+};
+
+// show running score
+function showRunningScore (playerScore, computerScore) {
+    playerScoreboard.textContent = playerScore;
+    computerScoreboard.textContent = computerScore;
+};
+
+// show gameover UI
+function displayEndgame (message) {
+    showRunningScore(playerScore, computerScore);
+    if (playerScore > computerScore) {
+        displayResult(message);
+    } else {
+        displayResult(message);
+    }
+};
+
+//  play one round of rock paper scissors
+function playRound (playerSelection, computerSelection) {
+    computerSelection = getComputerChoice();
     playerSelection = playerSelection.toLowerCase();
     if (playerSelection === computerSelection) {
-        return 'tie';
+        displayResult('Tie game');
     }
     else if (
-        playerSelection === 'rock' && computerSelection === "scissors" ||
-        playerSelection === 'paper' && computerSelection === 'rock' ||
-        playerSelection === 'scissors' && computerSelection === 'paper'
-    ) {
-        return 'player';
-    }
-    else {
-        return 'computer';
-    }
-}
-
-//  function that will play one round
-function playRound (playerSelection, computerSelection) {
-    const result = findWinner(playerSelection, computerSelection);
-    if (result == 'tie') {
-        return "It's a tie!";
-    }
-    else if (result == 'player') {
-        return `You win! ${playerSelection} beats ${computerSelection}`;
-    }
-    else {
-        return `Computer Win! ${computerSelection} beats ${playerSelection}`;
-    }
-}
-
-// create a nodelist call buttons
-const buttons = document.querySelectorAll('button');
-
-// iterate through each button
-buttons.forEach((button) => {
-
-    // for each button we add a 'click' listener
-    button.addEventListener('click', () => {
-        console.log(playRound(button.id, getComputerChoice()));
-    });
-});
-
-// show player score by using DOM methods
-const playerScore = document.querySelector('.player-score');
-const score = document.createElement('div');
-score.classList.add('score');
-score.textContent = '1';
-playerScore.appendChild(score);
-
-// show computer score by using DOM methods
-const computerScore = document.querySelector('.computer-score');
-const compScore = document.createElement('div');
-compScore.textContent = '0';
-computerScore.appendChild(compScore);
+        (playerSelection === 'rock' && computerSelection === "scissors") ||
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper')
+        ) {
+            playerScore++;
+            showRunningScore(playerScore, computerScore);
+            if (playerScore === 5) {
+                displayEndgame('You are the final winner. Congrats!');
+            }
+            else {
+                displayResult(`You win! ${playerSelection} beats ${computerSelection}`);
+            }
+    } else {
+        computerScore++;
+        showRunningScore(playerScore, computerScore);
+        if (computerScore === 5) {
+            displayEndgame('Computer is the final winner. Better luck next time!');
+        }
+        else {
+            displayResult(`Computer Win! ${computerSelection} beats ${playerSelection}`);
+        }
+    };
+};
