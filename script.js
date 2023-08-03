@@ -9,7 +9,7 @@ const playerScoreboard = document.querySelector('#player-score');
 const computerScoreboard = document.querySelector('#computer-score');
 const modal = document.querySelector('#modal');
 const modalMessage = document.querySelector('.modal-message');
-const closeModal = document.querySelector('#restart');
+const closeModalBtn = document.querySelector('#restart');
 
 // game
 const buttons = document.querySelectorAll('.btn');
@@ -23,8 +23,13 @@ buttons.forEach((button) => {
         playRound(playerSelection, computerSelection);
     });
 });
-restartGame();
 
+closeModalBtn.addEventListener('click', () => {
+    modal.close();
+    restartGame();
+});
+
+// UI
 // Write a function to get computer's choice
 function getComputerChoice () {
     let randomNumber = Math.floor(Math.random() * 3);
@@ -38,7 +43,6 @@ function getComputerChoice () {
     }
 }
 
-// UI
 // display result message
 function displayResult (message) {
     resultText.textContent = message;
@@ -89,8 +93,10 @@ function playRound (playerSelection, computerSelection) {
     };
 };
 
+// reset game UI
 function restartGame () {
-    closeModal.addEventListener('click', () => {
-        modal.close();
-    });
+    playerScore = 0;
+    computerScore = 0;
+    showRunningScore(playerScore, computerScore);
+    displayResult('First to 5 wins!');
 };
