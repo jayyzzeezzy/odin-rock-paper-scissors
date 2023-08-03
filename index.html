@@ -11,31 +11,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@500;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
-        <h1 class="header-text">Rock Paper Scissors</h1>
-    </div>
-
-    <div id="container">
-        <button class="btn" id="rock">&#9994</button>
-        <button class="btn" id="paper">&#9995</button>
-        <button class="btn" id="scissors">&#9996</button>
-    </div>
-    <div class="scoreboard">
-        <div class="player-scoreboard">
-            <div class="title">Player:</div> 
-            <p id="player-score">0</p>
+    <main>    
+        <div class="header">
+            <h1 class="header-text">Rock Paper Scissors</h1>
         </div>
-        <div class="computer-scoreboard">
-            <div class="title">Computer: </div>
-            <p id="computer-score">0</p>
-        </div>
-    </div>
 
-    <div class="result-message">
-        <p class="result-message-text">
-            First to 5 wins!
-        </p>
-    </div>
+        <div id="container">
+            <button class="btn" id="rock">&#9994</button>
+            <button class="btn" id="paper">&#9995</button>
+            <button class="btn" id="scissors">&#9996</button>
+        </div>
+        <div class="scoreboard">
+            <div class="player-scoreboard">
+                <div class="title">Player:</div> 
+                <p id="player-score">0</p>
+            </div>
+            <div class="computer-scoreboard">
+                <div class="title">Computer: </div>
+                <p id="computer-score">0</p>
+            </div>
+        </div>
+
+        <div class="result-message">
+            <p class="result-message-text">
+                First to 5 wins!
+            </p>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>Copyright © 2023 @jayyzzeezzy</p>
+    </footer>
+
     <dialog class="modal" id="modal">
         <h2 class="modal-message"></h2>
         <button class="restart" id="restart">Restart</button>
