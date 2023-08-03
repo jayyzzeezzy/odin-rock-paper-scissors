@@ -58,6 +58,7 @@ function showRunningScore (playerScore, computerScore) {
 function displayEndgame (message) {
     showRunningScore(playerScore, computerScore);
     modalMessage.textContent = message;
+    modal.setAttribute('style', 'display: flex;');
     modal.showModal();
 };
 
@@ -99,4 +100,5 @@ function restartGame () {
     computerScore = 0;
     showRunningScore(playerScore, computerScore);
     displayResult('First to 5 wins!');
+    modal.removeAttribute('style');
 };
