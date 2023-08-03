@@ -7,17 +7,23 @@ let computerScore = 0;
 const resultText = document.querySelector('.result-message-text');
 const playerScoreboard = document.querySelector('#player-score');
 const computerScoreboard = document.querySelector('#computer-score');
+const modal = document.querySelector('#modal');
+const modalMessage = document.querySelector('.modal-message');
+const closeModal = document.querySelector('#restart');
 
 // game
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.btn');
 
 buttons.forEach((button) => {
     //add 'click' listener for each button
     button.addEventListener('click', () => {
+        // event.stopPropagation();
         playerSelection = button.id;
+        console.log(playerSelection);
         playRound(playerSelection, computerSelection);
     });
 });
+restartGame();
 
 // Write a function to get computer's choice
 function getComputerChoice () {
@@ -47,11 +53,8 @@ function showRunningScore (playerScore, computerScore) {
 // show gameover UI
 function displayEndgame (message) {
     showRunningScore(playerScore, computerScore);
-    if (playerScore > computerScore) {
-        displayResult(message);
-    } else {
-        displayResult(message);
-    }
+    modalMessage.textContent = message;
+    modal.showModal();
 };
 
 //  play one round of rock paper scissors
@@ -69,7 +72,7 @@ function playRound (playerSelection, computerSelection) {
             playerScore++;
             showRunningScore(playerScore, computerScore);
             if (playerScore === 5) {
-                displayEndgame('You are the final winner. Congrats!');
+                displayEndgame('You won!');
             }
             else {
                 displayResult(`You win! ${playerSelection} beats ${computerSelection}`);
@@ -78,10 +81,16 @@ function playRound (playerSelection, computerSelection) {
         computerScore++;
         showRunningScore(playerScore, computerScore);
         if (computerScore === 5) {
-            displayEndgame('Computer is the final winner. Better luck next time!');
+            displayEndgame('You lost!');
         }
         else {
             displayResult(`Computer Win! ${computerSelection} beats ${playerSelection}`);
         }
     };
+};
+
+function restartGame () {
+    closeModal.addEventListener('click', () => {
+        modal.close();
+    });
 };
